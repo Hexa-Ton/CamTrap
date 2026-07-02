@@ -1,0 +1,4 @@
+# Dependencies for CamTrap
+# No external Python packages required
+# PHP is needed for server (install via: pkg install php)
+# Cloudflared is needed for HTTPS tunnel (install via: pkg install cloudflared)

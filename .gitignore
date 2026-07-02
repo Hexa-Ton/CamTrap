@@ -1,0 +1,18 @@
+# Runtime generated files
+index.html
+post.php
+
+# Captured data
+captured_data/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
