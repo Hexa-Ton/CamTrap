@@ -43,7 +43,7 @@
 | PHP | Local server |
 | Cloudflared | Public HTTPS tunnel |
 | Git | Version control |
-| Termux | Android terminal |
+| **Kali Linux & Termux** | Supported platforms |
 
 ---
 
