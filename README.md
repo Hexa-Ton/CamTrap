@@ -63,4 +63,4 @@ git clone https://github.com/Hexa-Ton/CamTrap.git
 cd CamTrap
 
 # Run the tool
-python camtrap.py
+python3 camtrap.py
