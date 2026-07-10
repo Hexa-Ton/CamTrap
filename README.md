@@ -60,10 +60,9 @@ rm cloudflared-linux-amd64.deb
 git clone https://github.com/Hexa-Ton/CamTrap.git
 cd CamTrap
 python3 camtrap.py
-
+```
 Note: If Cloudflared installation fails via dpkg, try:
 
-'''bash
 
 curl -L https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64 -o cloudflared
 chmod +x cloudflared
@@ -74,17 +73,15 @@ sudo mv cloudflared /usr/local/bin/
 
 ### 🟢 Termux (Android)
 
-'''bash
-
+```bash
 pkg update -y && pkg upgrade -y
 pkg install -y python php git cloudflared
 git clone https://github.com/Hexa-Ton/CamTrap.git
 cd CamTrap
 python camtrap.py
-
+```
 Note: If Cloudflared is not found in Termux default repo:
 
-'''bash
 
 pkg install -y tur-repo
 pkg install -y cloudflared
