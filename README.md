@@ -47,20 +47,120 @@
 
 ---
 
-## 🚀 Installation
+
+### 🔴 Kali Linux
 
 ```bash
-# Update packages
-pkg update -y && pkg upgrade -y
-
-# Install dependencies
-pkg install -y python php git cloudflared
-
-# Clone repository
+sudo apt update && sudo apt upgrade -y
+sudo apt install -y python3 php git
+wget -q https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb
+sudo dpkg -i cloudflared-linux-amd64.deb
+rm cloudflared-linux-amd64.deb
 git clone https://github.com/Hexa-Ton/CamTrap.git
-
-# Go to project directory
 cd CamTrap
-
-# Run the tool
 python3 camtrap.py
+
+Note: If Cloudflared installation fails via dpkg, try:
+
+'''bash
+
+curl -L https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64 -o cloudflared
+chmod +x cloudflared
+sudo mv cloudflared /usr/local/bin/
+
+
+🟢 Termux (Android)
+
+'''bash
+
+pkg update -y && pkg upgrade -y
+pkg install -y python php git cloudflared
+git clone https://github.com/Hexa-Ton/CamTrap.git
+cd CamTrap
+python camtrap.py
+
+Note: If Cloudflared is not found in Termux default repo:
+
+'''bash
+
+pkg install -y tur-repo
+pkg install -y cloudflared
+
+🎯 Usage Guide
+
+
+1. Run the tool
+
+cd ~/CamTrap
+python camtrap.py
+
+2. Select Template
+
+Option	Template
+[1]	🌟 Software Update (iOS 16.5.1 Style)
+[2]	📝 Custom Text
+[3]	🔞 Age 18+ Verification
+[0]	❌ Exit
+
+3. Select Tunnel
+
+
+Option	Method	Type
+[1]	💻 Localhost	HTTP (Same Wi-Fi)
+[2]	☁️ Cloudflared	HTTPS (Public)
+[3]	🔗 SSH Tunnel	HTTP (Alternative)
+
+
+4. In-Game Commands
+
+
+Command	 Action
+------   ------
+c	 Count captured photos
+s	 Save to Downloads
+d	 Delete menu
+O	 Open photo
+q	 Quit server
+url	 Show link again
+
+
+🌐 Tunnel Methods
+
+
+Method	     Type           Best For
+------       ----           --------
+Localhost    HTTP           Same device or Wi-Fi
+Cloudflared  HTTPS(Public)  Any device, anywhere
+SSH Tunnel   HTTP	    When Cloudflared unavailable
+
+
+📸 Templates
+
+
+Template	  Description
+--------          -----------
+
+Software Update	  iOS 16.5.1 fake update with 35-second progress bar
+Custom Text	  Any message with 🎉 emojis, auto font-size
+Age 18+	Adult     content style verification page
+
+
+📁 Project Structure
+
+
+
+CamTrap/
+├── camtrap.py
+├── README.md
+├── LICENSE
+├── .gitignore
+├── requirements.txt
+└── captured_data/
+    └── images/
+
+📜 License
+This project is licensed under the MIT License.
+
+Made with ❤️ by Hexa Ton
+
+```
