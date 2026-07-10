@@ -47,6 +47,7 @@
 
 ---
 
+## 🚀 Installation
 
 ### 🔴 Kali Linux
 
@@ -69,7 +70,8 @@ chmod +x cloudflared
 sudo mv cloudflared /usr/local/bin/
 
 
-🟢 Termux (Android)
+
+### 🟢 Termux (Android)
 
 '''bash
 
