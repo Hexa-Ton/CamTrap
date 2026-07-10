@@ -86,6 +86,7 @@ Note: If Cloudflared is not found in Termux default repo:
 pkg install -y tur-repo
 pkg install -y cloudflared
 
+```bash
 🎯 Usage Guide
 
 
@@ -162,5 +163,4 @@ CamTrap/
 This project is licensed under the MIT License.
 
 Made with ❤️ by Hexa Ton
-
 ```
