@@ -70,6 +70,7 @@ chmod +x cloudflared
 sudo mv cloudflared /usr/local/bin/
 
 
+## 🚀 Installation
 
 ### 🟢 Termux (Android)
 
